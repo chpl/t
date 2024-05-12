@@ -1,0 +1,7 @@
+version: 2
+
+deploy:
+  steps:
+    terraformInit:
+      before:
+        - sleep 600
