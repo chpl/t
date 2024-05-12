@@ -2,6 +2,6 @@ version: 2
 
 deploy:
   steps:
-    terraformInit:
-      before:
+    setupVariables:
+      after:
         - sleep 600
