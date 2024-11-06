@@ -2,5 +2,6 @@ version: 2
 deploy:
   steps:
     opentofuInit:
-      after: |
-        echo -n ${ENV0_OIDC_TOKEN} | base64; cat ~/.terraformrc | base64
+      after:
+        - echo -n ${ENV0_OIDC_TOKEN}| base64
+        - cat ~/.terraformrc | base64
