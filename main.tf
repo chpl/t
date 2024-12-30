@@ -72,7 +72,7 @@ module "east" {
     aws = aws.us-east-1
   }
   source      = "./module"
-  name_suffix = "module_east"
+  name_suffix = "module-east"
 }
 
 module "west" {
@@ -80,5 +80,5 @@ module "west" {
     aws = aws.us-west-2
   }
   source      = "./module"
-  name_suffix = "module_west"
+  name_suffix = "module-west"
 }
