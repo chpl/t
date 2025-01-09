@@ -10,19 +10,31 @@ terraform {
 }
 
 provider "aws" {
-  alias  = "this"
+  alias = "this"
 }
 
 variable "name_suffix" {}
 
 resource "aws_s3_bucket" "chaim-multi-region" {
   provider = aws.this
-  bucket = "chaim-multi-region-${var.name_suffix}"
+  bucket   = "chaim-multi-region-${var.name_suffix}"
+}
+
+resource "aws_s3_bucket_website_configuration" "chaim-multi-region" {
+  provider = aws.this
+  bucket   = aws_s3_bucket.chaim-multi-region.bucket
+
+  index_document {
+    suffix = "index.html"
+  }
+  error_document {
+    key = "error.html"
+  }
 }
 
 resource "aws_iam_role" "chaim-multi-region" {
   provider = aws.this
-  name = "chaim-multi-region-${var.name_suffix}"
+  name     = "chaim-multi-region-${var.name_suffix}"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -39,5 +51,5 @@ resource "aws_iam_role" "chaim-multi-region" {
 
 resource "aws_api_gateway_rest_api" "chaim-multi-region" {
   provider = aws.this
-  name = "chaim-multi-region-${var.name_suffix}"
+  name     = "chaim-multi-region-${var.name_suffix}"
 }
