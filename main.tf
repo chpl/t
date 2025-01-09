@@ -15,21 +15,21 @@ terraform {
 
 provider "aws" {
   region = "us-east-1"
-  alias  = "us-east-1"
+  alias  = "main"
 }
 
 provider "aws" {
   region = "us-west-2"
-  alias  = "us-west-2"
+  alias  = "secondary"
 }
 
 resource "aws_s3_bucket" "chaim-multi-region-east" {
-  provider = aws.us-east-1
+  provider = aws.main
   bucket   = "chaim-multi-region-east"
 }
 
 resource "aws_iam_role" "chaim-multi-region-east" {
-  provider = aws.us-east-1
+  provider = aws.main
   name     = "chaim-multi-region-east"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -46,12 +46,12 @@ resource "aws_iam_role" "chaim-multi-region-east" {
 }
 
 resource "aws_s3_bucket" "chaim-multi-region-west" {
-  provider = aws.us-west-2
+  provider = aws.secondary
   bucket   = "chaim-multi-region-west"
 }
 
 resource "aws_iam_role" "chaim-multi-region-west" {
-  provider = aws.us-west-2
+  provider = aws.secondary
   name     = "chaim-multi-region-west"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -68,18 +68,18 @@ resource "aws_iam_role" "chaim-multi-region-west" {
 }
 
 resource "aws_api_gateway_rest_api" "chaim-multi-region-east" {
-    provider = aws.us-east-1
+    provider = aws.main
     name     = "chaim-multi-region-east"
 }
 
 resource "aws_api_gateway_rest_api" "chaim-multi-region-west" {
-    provider = aws.us-west-2
+    provider = aws.secondary
     name     = "chaim-multi-region-west"
 }
 
 module "east" {
   providers = {
-    aws.this = aws.us-east-1
+    aws.this = aws.main
   }
   source      = "./module"
   name_suffix = "module-east"
@@ -87,7 +87,7 @@ module "east" {
 
 module "west" {
   providers = {
-    aws.this = aws.us-west-2
+    aws.this = aws.secondary
   }
   source      = "./module"
   name_suffix = "module-west"
