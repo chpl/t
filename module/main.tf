@@ -9,6 +9,10 @@ terraform {
   }
 }
 
+provider "aws" {
+  alias = "this"
+}
+
 variable "name_suffix" {}
 
 resource "aws_s3_bucket" "chaim-multi-region" {

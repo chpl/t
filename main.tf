@@ -69,7 +69,7 @@ resource "aws_iam_role" "chaim-multi-region-west" {
 
 module "east" {
   providers = {
-    aws = aws.us-east-1
+    aws.this = aws.us-east-1
   }
   source      = "./module"
   name_suffix = "module-east"
@@ -77,7 +77,7 @@ module "east" {
 
 module "west" {
   providers = {
-    aws = aws.us-west-2
+    aws.this = aws.us-west-2
   }
   source      = "./module"
   name_suffix = "module-west"
