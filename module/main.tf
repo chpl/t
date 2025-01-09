@@ -37,3 +37,7 @@ resource "aws_iam_role" "chaim-multi-region" {
   })
 }
 
+resource "aws_api_gateway_rest_api" "chaim-multi-region" {
+  provider = aws.this
+  name = "chaim-multi-region-${var.name_suffix}"
+}

@@ -67,6 +67,16 @@ resource "aws_iam_role" "chaim-multi-region-west" {
   })
 }
 
+resource "aws_api_gateway_rest_api" "chaim-multi-region-east" {
+    provider = aws.us-east-1
+    name     = "chaim-multi-region-east"
+}
+
+resource "aws_api_gateway_rest_api" "chaim-multi-region-west" {
+    provider = aws.us-west-2
+    name     = "chaim-multi-region-west"
+}
+
 module "east" {
   providers = {
     aws.this = aws.us-east-1
