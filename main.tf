@@ -8,7 +8,7 @@ terraform {
     }
 
     null = {
-      source  = "hashicorp/null"
+      source = "hashicorp/null"
     }
   }
 }
@@ -24,13 +24,15 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "chaim-multi-region-east" {
+  count    = 1
   provider = aws.main
   bucket   = "chaim-multi-region-east"
 }
 
 resource "aws_iam_role" "chaim-multi-region-east" {
+  count    = 1
   provider = aws.main
-  name     = "chaim-multi-region-east"
+  name     = "chaim-multi-region-east-new"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -68,13 +70,13 @@ resource "aws_iam_role" "chaim-multi-region-west" {
 }
 
 resource "aws_api_gateway_rest_api" "chaim-multi-region-east" {
-    provider = aws.main
-    name     = "chaim-multi-region-east"
+  provider = aws.main
+  name     = "chaim-multi-region-east"
 }
 
 resource "aws_api_gateway_rest_api" "chaim-multi-region-west" {
-    provider = aws.secondary
-    name     = "chaim-multi-region-west"
+  provider = aws.secondary
+  name     = "chaim-multi-region-west"
 }
 
 module "east" {
