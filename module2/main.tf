@@ -20,10 +20,18 @@ resource "aws_s3_bucket" "module2" {
 }
 
 module "external_module2" {
-  source = "terraform-aws-modules/s3-bucket/aws"
+  source = "terraform-aws-modules/s3-bucket/aws//wrappers"
 
-  bucket = "${var.prefix}-module2-external-module"
-  tags = {
-    Drift = "${var.drift}-tag"
+  defaults = { # Default values
+    create = true
+    tags = {
+      Drift = "${var.drift}-tag"
+    }
+  }
+
+  items = {
+    my_bucket = {
+      bucket = "${var.prefix}-module2-external-module"
+    }
   }
 }
