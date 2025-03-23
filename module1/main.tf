@@ -25,7 +25,7 @@ module "module2" {
   drift  = var.drift
 }
 
-module "s3_bucket_module1" {
+module "external_module1" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
   bucket = "${var.prefix}-module1-external-module"
