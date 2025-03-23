@@ -30,8 +30,11 @@ module "external_module2" {
   }
 
   items = {
-    my_bucket = {
-      bucket = "${var.prefix}-module2-external-module"
+    my_bucket1 = {
+      bucket = "${var.prefix}-module2-external-module1"
+    }
+    my_bucket2 = {
+      bucket = "${var.prefix}-module2-external-module2"
     }
   }
 }

@@ -13,7 +13,8 @@ variable "prefix" {}
 variable "drift" {}
 
 resource "aws_s3_bucket" "module1" {
-  bucket = "${var.prefix}-module1"
+  count  = 2
+  bucket = "${var.prefix}-module1-${count.index}"
   tags = {
     Drift = "${var.drift}-tag"
   }
@@ -26,9 +27,10 @@ module "module2" {
 }
 
 module "external_module1" {
+  count  = 2
   source = "terraform-aws-modules/s3-bucket/aws"
 
-  bucket = "${var.prefix}-module1-external-module"
+  bucket = "${var.prefix}-module1-external-module-${count.index}"
   tags = {
     Drift = "${var.drift}-tag"
   }
