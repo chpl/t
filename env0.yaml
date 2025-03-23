@@ -2,4 +2,5 @@ version: 2
 
 deploy:
   onCompletion:
-    rm -rf .terraform
+    - name: Clenup
+      run: rm -rf .terraform
