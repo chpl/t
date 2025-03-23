@@ -1,8 +1,0 @@
-version: 2
-
-deploy:
-  steps:
-    opentofuApply:
-      after:
-        - name: State
-          run: tofu state pull | jq

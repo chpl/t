@@ -6,20 +6,17 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
-
   }
 }
 
-variable "prefix" {
-  default = "chaim-deleteme"
+variable "prefix" {}
+
+resource "aws_s3_bucket" "module1" {
+  bucket   = "${var.prefix}-module1"
 }
 
-resource "aws_s3_bucket" "root" {
-  bucket   = "${var.prefix}-root-module"
-}
-
-resource "aws_s3_bucket_website_configuration" "root" {
-  bucket   = aws_s3_bucket.root.bucket
+resource "aws_s3_bucket_website_configuration" "module" {
+  bucket   = aws_s3_bucket.module1.bucket
 
   index_document {
     suffix = "index.html"
@@ -29,10 +26,14 @@ resource "aws_s3_bucket_website_configuration" "root" {
   }
 }
 
-module "s3_bucket_root" {
+module "module2" {
+  source = "../module2"
+}
+
+module "s3_bucket_module1" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
-  bucket = "${var.prefix}-root-external-module"
+  bucket = "${var.prefix}-module1-external-module"
   acl    = "private"
 
   control_object_ownership = true
