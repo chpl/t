@@ -1,6 +1,8 @@
 version: 2
 
 deploy:
-  onCompletion:
-    - name: Clenup
-      run: rm -rf .terraform
+  steps:
+    storeState:
+      before:
+        - name: Clenup
+          run: rm -rf .terraform
