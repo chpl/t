@@ -14,31 +14,28 @@ variable "prefix" {
   default = "chaim-deleteme"
 }
 
-resource "aws_s3_bucket" "root" {
-  bucket   = "${var.prefix}-root-module"
+variable "drift" {
+  default = ""
 }
 
-resource "aws_s3_bucket_website_configuration" "root" {
-  bucket   = aws_s3_bucket.root.bucket
+resource "aws_s3_bucket" "root" {
+  bucket = "${var.prefix}-root-module"
+  tags = {
+    Drift = "${var.drift}-tag"
+  }
+}
 
-  index_document {
-    suffix = "index.html"
-  }
-  error_document {
-    key = "error.html"
-  }
+module "module1" {
+  source = "./module1"
+  prefix = var.prefix
+  drift  = var.drift
 }
 
 module "s3_bucket_root" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
   bucket = "${var.prefix}-root-external-module"
-  acl    = "private"
-
-  control_object_ownership = true
-  object_ownership         = "ObjectWriter"
-
-  versioning = {
-    enabled = true
+  tags = {
+    Drift = "${var.drift}-tag"
   }
 }
