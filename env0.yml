@@ -1,0 +1,10 @@
+version: 2
+
+deploy:
+  steps:
+    terraformInit:
+      before:
+        - name: Test
+          run: |
+            exit 1
+            echo 'Success'
