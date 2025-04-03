@@ -18,6 +18,8 @@ variable "drift" {
   default = ""
 }
 
+
+# updated by env0 cloud to code
 resource "aws_s3_bucket" "root" {
   bucket = "${var.prefix}-root-module"
   tags = {
@@ -31,6 +33,8 @@ module "module1" {
   drift  = var.drift
 }
 
+
+# updated by env0 cloud to code
 module "external_root" {
   source = "terraform-aws-modules/s3-bucket/aws"
 

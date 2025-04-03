@@ -12,6 +12,8 @@ terraform {
 variable "prefix" {}
 variable "drift" {}
 
+
+# updated by env0 cloud to code
 resource "aws_s3_bucket" "module2" {
   bucket = "${var.prefix}-module2"
   tags = {
@@ -19,6 +21,8 @@ resource "aws_s3_bucket" "module2" {
   }
 }
 
+
+# updated by env0 cloud to code
 module "external_module2" {
   source = "terraform-aws-modules/s3-bucket/aws//wrappers"
 

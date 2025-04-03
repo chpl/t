@@ -12,6 +12,8 @@ terraform {
 variable "prefix" {}
 variable "drift" {}
 
+
+# updated by env0 cloud to code
 resource "aws_s3_bucket" "module1" {
   count  = 2
   bucket = "${var.prefix}-module1-${count.index}"
@@ -26,6 +28,8 @@ module "module2" {
   drift  = var.drift
 }
 
+
+# updated by env0 cloud to code
 module "external_module1" {
   count  = 2
   source = "terraform-aws-modules/s3-bucket/aws"
