@@ -18,6 +18,7 @@ variable "drift" {
   default = ""
 }
 
+// dd1
 resource "aws_s3_bucket" "root" {
   bucket = "${var.prefix}-root-module"
   tags = {
