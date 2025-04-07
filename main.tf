@@ -31,6 +31,8 @@ module "module1" {
   drift  = var.drift
 }
 
+
+# updated by env0 cloud to code
 module "external_root" {
   source = "terraform-aws-modules/s3-bucket/aws"
 

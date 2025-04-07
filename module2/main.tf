@@ -12,6 +12,8 @@ terraform {
 variable "prefix" {}
 variable "drift" {}
 
+
+# updated by env0 cloud to code
 resource "aws_s3_bucket" "module2" {
   bucket = "${var.prefix}-module2"
   tags = {
