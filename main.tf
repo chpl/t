@@ -30,12 +30,3 @@ module "module1" {
   prefix = var.prefix
   drift  = var.drift
 }
-
-module "external_root" {
-  source = "terraform-aws-modules/s3-bucket/aws"
-
-  bucket = "${var.prefix}-root-external-module"
-  tags = {
-    Drift = "${var.drift}-tag"
-  }
-}
