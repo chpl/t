@@ -10,12 +10,16 @@ terraform {
 }
 
 variable "prefix" {}
-variable "drift" {}
 
 resource "aws_s3_bucket" "module1" {
   count  = 2
   bucket = "${var.prefix}-module1-${count.index}"
-  tags = {
-    Drift = "${var.drift}-tag"
+}
+
+resource "aws_s3_bucket_versioning" "module1" {
+  count  = 2
+  bucket = aws_s3_bucket.module1[count.index].id
+  versioning_configuration {
+    status = "Enabled"
   }
 }
