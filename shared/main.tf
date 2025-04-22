@@ -11,9 +11,7 @@ terraform {
 
 provider "aws" {
   region = "us-east-1"
-}
-
-variable "prefix" {}
+}variable "prefix" {}
 
 module "s3_bucket_external" {
   source = "terraform-aws-modules/s3-bucket/aws"
