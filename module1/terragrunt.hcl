@@ -3,7 +3,7 @@ include "common" {
 }
 
 terraform {
-  source = "../shared"
+  source = "../modules/external"
   extra_arguments "migrate" {
     commands = [
       "init",
