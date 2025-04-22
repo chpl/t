@@ -20,6 +20,4 @@ remote_state {
     region = "us-east-1"
     disable_bucket_update = true
   }
-
-  disable_init          = true
 }
