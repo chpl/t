@@ -4,6 +4,15 @@ include "common" {
 
 terraform {
   source = "../shared"
+  extra_arguments "migrate" {
+    commands = [
+      "init",
+    ]
+
+    arguments = [
+      "-migrate-state"
+    ]
+  }
 }
 
 inputs = {

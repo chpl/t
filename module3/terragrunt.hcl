@@ -4,6 +4,15 @@ include "common" {
 
 terraform {
   source = "tfr:///terraform-aws-modules/s3-bucket/aws?version=4.7.0"
+  extra_arguments "migrate" {
+    commands = [
+      "init",
+    ]
+
+    arguments = [
+      "-migrate-state"
+    ]
+  }
 }
 
 inputs = {
