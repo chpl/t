@@ -7,13 +7,16 @@ terraform {
   }
 }
 
+provider "aws" {
+  region = "us-east-1"
+}
 
 resource "aws_s3_bucket" "this" {
-    bucket = "chaim-delete-me-s3-bucket"
+  bucket = "chaim-delete-me-s3-bucket"
 }
 
 resource "aws_s3_bucket_versioning" "this" {
-  bucket                = aws_s3_bucket.this.id
+  bucket = aws_s3_bucket.this.id
 
   versioning_configuration {
     # Valid values: "Enabled" or "Suspended"
