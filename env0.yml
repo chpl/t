@@ -4,25 +4,30 @@ deploy:
   steps:
     setupVariables:
       after:
-        - run: |
+        - name: "setupVariables:after"
+          run: |
             echo "ENV0_STEP_NAME=${ENV0_STEP_NAME}"
             echo "ENV0_STEP_STATUS=${ENV0_STEP_STATUS}"
     terraformInit:
       before:
-        - run: |
+        - name: "terraformInit:before"
+          run: |
             echo "ENV0_STEP_NAME=${ENV0_STEP_NAME}"
             echo "ENV0_STEP_STATUS=${ENV0_STEP_STATUS}"
       after:
-        - run: |
+        - name: "terraformInit:after"
+          run: |
             echo "ENV0_STEP_NAME=${ENV0_STEP_NAME}"
             echo "ENV0_STEP_STATUS=${ENV0_STEP_STATUS}"
     cloudToCode:
       before:
-        - run: |
+        - name: "cloudToCode:before"
+          run: |
             echo "ENV0_STEP_NAME=${ENV0_STEP_NAME}"
             echo "ENV0_STEP_STATUS=${ENV0_STEP_STATUS}"
       after:
-        - run: |
+        - name: "cloudToCode:after"
+          run: |
             echo "ENV0_STEP_NAME=${ENV0_STEP_NAME}"
             echo "ENV0_STEP_STATUS=${ENV0_STEP_STATUS}"
             echo "ENV0_PULL_REQUEST_URL=${ENV0_PULL_REQUEST_URL}"
