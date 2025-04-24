@@ -7,15 +7,9 @@ terraform {
   }
 }
 
-variable "prefix" {}
-
 
 resource "aws_s3_bucket" "this" {
-    bucket = "chaim-delete-me-${var.prefix}-my-s3-bucket"
-}
-moved {
-  from = module.s3_bucket_external.aws_s3_bucket.this[0]
-  to   = aws_s3_bucket.this
+    bucket = "chaim-delete-me-s3-bucket"
 }
 
 resource "aws_s3_bucket_versioning" "this" {
@@ -25,9 +19,4 @@ resource "aws_s3_bucket_versioning" "this" {
     # Valid values: "Enabled" or "Suspended"
     status = "Enabled"
   }
-}
-
-moved {
-  from = module.s3_bucket_external.aws_s3_bucket_versioning.this[0]
-  to   = aws_s3_bucket_versioning.this
 }
