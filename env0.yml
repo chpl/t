@@ -6,28 +6,22 @@ deploy:
       after:
         - name: "setupVariables:after"
           run: |
-            echo "ENV0_STEP_NAME=${ENV0_STEP_NAME}"
-            echo "ENV0_STEP_STATUS=${ENV0_STEP_STATUS}"
+            env | sort
     terraformInit:
       before:
         - name: "terraformInit:before"
           run: |
-            echo "ENV0_STEP_NAME=${ENV0_STEP_NAME}"
-            echo "ENV0_STEP_STATUS=${ENV0_STEP_STATUS}"
+            env | sort
       after:
         - name: "terraformInit:after"
           run: |
-            echo "ENV0_STEP_NAME=${ENV0_STEP_NAME}"
-            echo "ENV0_STEP_STATUS=${ENV0_STEP_STATUS}"
+            env | sort
     cloudToCode:
       before:
         - name: "cloudToCode:before"
           run: |
-            echo "ENV0_STEP_NAME=${ENV0_STEP_NAME}"
-            echo "ENV0_STEP_STATUS=${ENV0_STEP_STATUS}"
+            env | sort
       after:
         - name: "cloudToCode:after"
           run: |
-            echo "ENV0_STEP_NAME=${ENV0_STEP_NAME}"
-            echo "ENV0_STEP_STATUS=${ENV0_STEP_STATUS}"
-            echo "ENV0_PULL_REQUEST_URL=${ENV0_PULL_REQUEST_URL}"
+            env | sort
