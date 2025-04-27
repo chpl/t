@@ -8,3 +8,8 @@ deploy:
         - env | sort
       after:
         - env | sort
+    cloudToCode:
+      before:
+        - env | sort
+      after:
+        - env | sort
