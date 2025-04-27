@@ -1,18 +1,10 @@
-version: 2
-
 deploy:
   steps:
     setupVariables:
       after:
-        - name: "setupVariables:after"
-          run: |
-            env | sort
+        - env | sort
     terraformInit:
       before:
-        - name: "terraformInit:before"
-          run: |
-            env | sort
+        - env | sort
       after:
-        - name: "terraformInit:after"
-          run: |
-            env | sort
+        - env | sort
