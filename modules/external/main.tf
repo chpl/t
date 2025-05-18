@@ -1,10 +1,10 @@
-variable "prefix" {}
-
-module "s3_bucket_external" {
-  source = "terraform-aws-modules/s3-bucket/aws"
-
-  bucket = "chaim-delete-me-${var.prefix}-my-s3-bucket"
-  versioning = {
-    enabled = true
+terraform {
+  required_providers {
+    null = {
+      source  = "hashicorp/null"
+      version = "3.2.3"
+    }
   }
 }
+
+resource "null_resource" "test" {}
