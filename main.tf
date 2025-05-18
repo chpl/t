@@ -15,10 +15,8 @@ provider "aws" {
 
 resource "aws_acm_certificate" "import" {
   certificate_body  = var.certificate_body
-  certificate_chain = var.certificate_chain
   private_key       = var.private_key
 }
 
 variable "certificate_body" {}
-variable "certificate_chain" {}
 variable "private_key" {}
