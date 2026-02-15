@@ -1,7 +1,8 @@
 version: 2
-
+shell: bash
 deploy:
   steps:
     setupVariables:
       after:
-        - sleep 600
+        - name: wait
+          run: 'for i in $(seq 1 3000); do echo "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain # $i at $(date +%T.%N)"; sleep 0.1; done'
