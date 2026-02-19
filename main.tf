@@ -1,5 +1,6 @@
 variable "res_count" {
-  type = number
+  type    = number
+  default = 2
 }
 
 resource "null_resource" "null" {
