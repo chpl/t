@@ -1,12 +1,12 @@
-variable "res_count" {
-  type    = number
-  default = 2
+terraform {
+  required_providers {
+    bitwarden-secrets = {
+      source  = "bitwarden/bitwarden-secrets"
+      version = "0.5.4-pre"
+    }
+  }
 }
+
 
 resource "null_resource" "null" {
-  count = var.res_count
-}
-
-output "test" {
-  value = "chaim"
 }
