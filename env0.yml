@@ -1,7 +1,0 @@
-version: 2
-deploy:
-  steps:
-    terraformPlan:
-      before:
-        - name: ROOT FLOW - must never run while dir flow exists
-          run: echo "root env0.yml executed"
