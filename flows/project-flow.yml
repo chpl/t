@@ -1,0 +1,7 @@
+version: 2
+deploy:
+  steps:
+    terraformPlan:
+      before:
+        - name: PROJECT FLOW step
+          run: echo "project custom flow executed"
