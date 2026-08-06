@@ -1,7 +1,3 @@
 version: 2
 deploy:
-  steps:
-    terraformPlan:
-      before:
-        - name: TEMPLATE DIR FLOW - Setting up Profile
-          run: echo "template dir env0.yml executed"
+  steps: [unclosed
