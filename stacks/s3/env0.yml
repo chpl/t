@@ -5,3 +5,5 @@ deploy:
       before:
         - name: TEMPLATE DIR FLOW - Setting up Profile
           run: echo "template dir env0.yml executed"
+post_apply:
+  - echo "not a valid custom flow property"
