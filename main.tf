@@ -8,7 +8,7 @@ resource "null_resource" "null" {
 }
 
 output "test" {
-  value = "chaim"
+  value = "here"
 }
 
 provider "environment" {}
